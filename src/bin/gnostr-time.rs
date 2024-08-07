@@ -136,7 +136,7 @@ fn main() -> Result<(), io::Error> {
             get_blockheight().unwrap(),
             get_wobble().unwrap()
         );
-        let padded_hash: String = String::from(format!("{}{}{}",get_weeble().unwrap(),get_blockheight().unwrap(), get_wobble().unwrap()));
+        //let padded_hash: String = String::from(format!("{}{}{}",get_weeble().unwrap(),get_blockheight().unwrap(), get_wobble().unwrap()));
         //info!("{:0>64}",padded_hash);
         i += 1;
         //info!("count={}", i);
@@ -152,7 +152,7 @@ fn draw<B: Backend>(
         let chunks = Layout::default()
             .direction(Direction::Vertical)
             .margin(1)
-            .constraints([Constraint::Percentage(0), Constraint::Percentage(80)].as_ref())
+            .constraints([Constraint::Percentage(93), Constraint::Percentage(7)].as_ref())
             .split(f.size());
         let block = Block::default().title("Block").borders(Borders::ALL);
         f.render_widget(block, chunks[0]);
