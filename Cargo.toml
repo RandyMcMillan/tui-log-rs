@@ -9,3 +9,4 @@ edition = "2018"
 crossterm = "0.19"
 tui = { version = "0.15", default-features = false, features = ['crossterm'] }
 log = { version = "0.4.14", features = ["std"] }
+gnostr-bins = "0.0.40"
