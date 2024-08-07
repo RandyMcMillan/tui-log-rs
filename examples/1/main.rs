@@ -11,6 +11,9 @@ use std::sync::{Arc, Mutex};
 use std::borrow::BorrowMut;
 use log::{info};
 
+use gnostr_bins::get_blockheight;
+use gnostr_bins::get_wobble;
+use gnostr_bins::get_weeble;
 
 #[derive(Default, Clone)]
 pub struct LogWidgetState {
@@ -60,9 +63,12 @@ fn main() -> Result<(), io::Error> {
     terminal.clear().expect("Could not clear terminal");
     let mut i = 0;
     loop {
+        terminal.clear().expect("Could not clear terminal");
         draw(&mut terminal, state.clone())?;
-        info!("Logged an info {}", i);
+        //info!("Logged an info {}", i);
+        info!("GNOSTR_TIME:{:}:{:}:{:}", get_weeble().unwrap(), get_blockheight().unwrap(), get_wobble().unwrap());
         i += 1;
+        terminal.clear().expect("Could not clear terminal");
     }
 }
 
@@ -73,7 +79,7 @@ fn draw<B: Backend>(terminal: &mut Terminal<B>, log_widget_state: Arc<Mutex<LogW
             .margin(1)
             .constraints(
                 [
-                    Constraint::Percentage(20),
+                    Constraint::Percentage(0),
                     Constraint::Percentage(80),
                 ].as_ref()
             )
