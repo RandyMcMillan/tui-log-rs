@@ -1,5 +1,5 @@
-use log::{LevelFilter, SetLoggerError, set_max_level, Log, Metadata, Record};
-use std::sync::{Mutex, Arc};
+use log::{set_max_level, LevelFilter, Log, Metadata, Record, SetLoggerError};
+use std::sync::{Arc, Mutex};
 
 pub trait Writable {
     fn write_line(&mut self, message: &str);
@@ -11,7 +11,7 @@ pub struct TuiLogger<W: Writable + Send + 'static> {
     writable: Arc<Mutex<W>>,
 }
 
-impl <W: Writable + Send + 'static> TuiLogger<W> {
+impl<W: Writable + Send + 'static> TuiLogger<W> {
     pub fn init(log_level: LevelFilter, writable: Arc<Mutex<W>>) -> Result<(), SetLoggerError> {
         set_max_level(log_level);
         log::set_boxed_logger(TuiLogger::new(log_level, writable))
@@ -20,7 +20,7 @@ impl <W: Writable + Send + 'static> TuiLogger<W> {
     pub fn new(log_level: LevelFilter, writable: Arc<Mutex<W>>) -> Box<TuiLogger<W>> {
         Box::new(TuiLogger {
             level: log_level,
-            writable
+            writable,
         })
     }
 }
@@ -40,12 +40,9 @@ impl<W: Writable + Send + 'static> Log for TuiLogger<W> {
 
             let mut write_lock = self.writable.lock().unwrap();
 
-            write_lock.write_line(format!(
-                "{:<5}: [{}] {}",
-                record.level(),
-                target,
-                record.args()
-            ).as_str());
+            write_lock.write_line(
+                format!("{:<5}: [{}] {}", record.level(), target, record.args()).as_str(),
+            );
         }
     }
 
