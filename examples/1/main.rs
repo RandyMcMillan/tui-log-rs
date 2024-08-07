@@ -74,16 +74,16 @@ fn main() -> Result<(), io::Error> {
 
         let loop_weeble = get_weeble().unwrap();
         if loop_weeble.parse::<i32>().unwrap_or(i32::MAX) >= weeble.parse::<i32>().unwrap_or(0) {
-            info!(
-                "{}:{} >= {}",
-                (loop_weeble.parse::<i32>().unwrap_or(i32::MAX)
-                    >= weeble.parse::<i32>().unwrap_or(0)),
-                loop_weeble,
-                weeble
-            );
+            //info!(
+            //    "{}:{} >= {}",
+            //    (loop_weeble.parse::<i32>().unwrap_or(i32::MAX)
+            //        >= weeble.parse::<i32>().unwrap_or(0)),
+            //    loop_weeble,
+            //    weeble
+            //);
             weeble = loop_weeble.clone();
             info!(
-                "loop_weeble:GNOSTR_TIME:{:}:{:}:{:}",
+                "GNOSTR_TIME:{:}:{:}:{:}",
                 weeble,
                 get_blockheight().unwrap(),
                 get_wobble().unwrap()
@@ -94,16 +94,16 @@ fn main() -> Result<(), io::Error> {
         if loop_blockheight.parse::<i32>().unwrap_or(i32::MAX)
             >= blockheight.parse::<i32>().unwrap_or(0)
         {
-            info!(
-                "{}:{} >= {}",
-                (loop_blockheight.parse::<i32>().unwrap_or(i32::MAX)
-                    >= blockheight.parse::<i32>().unwrap_or(0)),
-                loop_weeble,
-                weeble
-            );
+            //info!(
+            //    "{}:{} >= {}",
+            //    (loop_blockheight.parse::<i32>().unwrap_or(i32::MAX)
+            //        >= blockheight.parse::<i32>().unwrap_or(0)),
+            //    loop_weeble,
+            //    weeble
+            //);
             blockheight = loop_blockheight.clone();
             info!(
-                "loop_blockheight:GNOSTR_TIME:{:}:{:}:{:}",
+                "GNOSTR_TIME:{:}:{:}:{:}",
                 weeble,
                 blockheight,
                 get_wobble().unwrap()
@@ -111,16 +111,16 @@ fn main() -> Result<(), io::Error> {
         }
         let loop_wobble = get_wobble().unwrap();
         if loop_wobble.parse::<i32>().unwrap_or(i32::MAX) >= wobble.parse::<i32>().unwrap_or(0) {
-            info!(
-                "{}:{} >= {}",
-                (loop_wobble.parse::<i32>().unwrap_or(i32::MAX)
-                    >= wobble.parse::<i32>().unwrap_or(0)),
-                loop_wobble,
-                wobble
-            );
+            //info!(
+            //    "{}:{} >= {}",
+            //    (loop_wobble.parse::<i32>().unwrap_or(i32::MAX)
+            //        >= wobble.parse::<i32>().unwrap_or(0)),
+            //    loop_wobble,
+            //    wobble
+            //);
             wobble = loop_wobble.clone();
             info!(
-                "loop_wobble:GNOSTR_TIME:{:}:{:}:{:}",
+                "GNOSTR_TIME:{:}:{:}:{:}",
                 weeble,
                 blockheight,
                 get_wobble().unwrap()
@@ -137,7 +137,7 @@ fn main() -> Result<(), io::Error> {
             get_wobble().unwrap()
         );
         i += 1;
-        info!("count={}", i);
+        //info!("count={}", i);
         //terminal.clear().expect("Could not clear terminal");
     }
 }
